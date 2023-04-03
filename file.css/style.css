@@ -92,3 +92,6 @@ button {
     transition: 1s;
     transform: scale(4);
 }
+.red {
+    background-color: red;
+}
