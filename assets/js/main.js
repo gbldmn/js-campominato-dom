@@ -71,23 +71,29 @@ document.getElementById('bottone').addEventListener('click',function() {
         console.log(livello)
     
     if ( livello == 1) {
-        for (i=0; i<15; i++ ) {
+        while (bombe.length <= 16) {
             let numeri =  Math.floor(Math.random() * 100)
-               bombe.push(numeri);
-               console.log(bombe)
+            let risultato = bombe.includes(numeri)
+            if (risultato != true) {
+                bombe.push(numeri);
+            }
           }
      } else if (livello == 2) {
-        for (i=0; i<15; i++ ) {
-             let numeri =  Math.floor(Math.random() * 81)
-               bombe.push(numeri);
-               console.log(bombe)
+        while (bombe.length <= 16) {
+            let numeri =  Math.floor(Math.random() * 81)
+            let risultato = bombe.includes(numeri)
+            if (risultato != true) {
+                bombe.push(numeri);
+            }
           } 
      } else if (livello == 3) {
-        for (i=0; i<15; i++ ) {
-       let numeri =  Math.floor(Math.random() * 49)
-         bombe.push(numeri);
-         console.log(bombe)
-          }
+        while (bombe.length <= 16) {
+            let numeri =  Math.floor(Math.random() * 81)
+            let risultato = bombe.includes(numeri)
+            if (risultato != true) {
+                bombe.push(numeri);
+            }
+          } 
         
         
         
@@ -99,10 +105,11 @@ document.getElementById('bottone').addEventListener('click',function() {
     //   aggiungo evento al click
            divbox.addEventListener("click", function() {
 
-            if (!bombe.includes (i)) {      
+            if (!bombe.includes ('numeri')) {      
                this.classList.add('active');
                this.innerHTML = `<i class="fa-solid fa-check fa-beat"></i>`
                score++
+               console.log('numeri')
             } else {
                 this.classList.add('red');
                 this.innerHTML = `<i class="fa-solid fa-bomb fa-beat-fade";"></i>`
