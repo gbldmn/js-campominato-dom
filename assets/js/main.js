@@ -13,7 +13,7 @@ function creazioneElemento( tagHtml, classi, classLivello) {
 //    creo evento al click del bottone
 
 document.getElementById('bottone').addEventListener('click',function() {
-
+     let score = 0;
     //  richiamo la griglia
 
     let griglia = document.getElementById("griglia");
@@ -62,6 +62,8 @@ document.getElementById('bottone').addEventListener('click',function() {
             classeLivello = "item_3"; 
         }
 
+    // genero un arrey con 16 numeri random che saranno poi le bombe
+
         let bombe = [];
         console.log(bombe)
     
@@ -87,6 +89,8 @@ document.getElementById('bottone').addEventListener('click',function() {
          console.log(bombe)
           }
         
+        
+        
      }
 
 
@@ -97,9 +101,12 @@ document.getElementById('bottone').addEventListener('click',function() {
 
             if (!bombe.includes (i)) {      
                this.classList.add('active');
+               this.innerHTML = `<i class="fa-solid fa-check fa-beat"></i>`
+               score++
             } else {
                 this.classList.add('red');
-                alert('hai perso!!!!!')
+                this.innerHTML = `<i class="fa-solid fa-bomb fa-beat-fade";"></i>`
+                griglia.innerHTML += `<h1>hai perso con un punteggio di ${score} </h1>`;
             }
             console.log(divbox)
            })
@@ -108,32 +115,5 @@ document.getElementById('bottone').addEventListener('click',function() {
            griglia.append(divbox);
 
     }
-
-//     let bombe = [];
-//     console.log(bombe)
-
-//     document.getElementById('livello').value;
-//     console.log(livello)
-
-// if ( livello == 1) {
-//     for (i=0; i<15; i++ ) {
-//         let numeri =  Math.floor(Math.random() * 100)
-//            bombe.push(numeri);
-//            console.log(bombe)
-//       }
-//  } else if (livello == 2) {
-//     for (i=0; i<15; i++ ) {
-//          let numeri =  Math.floor(Math.random() * 81)
-//            bombe.push(numeri);
-//            console.log(bombe)
-//       } 
-//  } else if (livello == 3) {
-//     for (i=0; i<15; i++ ) {
-//    let numeri =  Math.floor(Math.random() * 49)
-//      bombe.push(numeri);
-//      console.log(bombe)
-//       }
-    
-//  }
-
 })
+
