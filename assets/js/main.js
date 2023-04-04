@@ -9,12 +9,13 @@ function creazioneElemento( tagHtml, classi, classLivello) {
     elemento.classList.add(classLivello);
     return elemento;
 }
-    
+     
 //    creo evento al click del bottone
 
 document.getElementById('bottone').addEventListener('click',function() {
-     let score = 0;
+    let score = 0;
     //  richiamo la griglia
+   
 
     let griglia = document.getElementById("griglia");
     griglia.innerHTML = "";
@@ -42,10 +43,48 @@ document.getElementById('bottone').addEventListener('click',function() {
     }
 
     console.log("giri:" + giri);
+
+       // genero un arrey con 16 numeri random che saranno poi le bombe
+       let bombe = [];
+    
+   
+       document.getElementById('livello').value;
+       console.log(livello)
+   
+   if ( livello == 1) {
+       while (bombe.length < 16) {
+           let numeri =  Math.floor(Math.random() * 100)
+           let risultato = bombe.includes(numeri)
+           if (risultato != true) {
+               bombe.push(numeri);
+           }
+         }
+    } else if (livello == 2) {
+       while (bombe.length <= 16) {
+           let numeri =  Math.floor(Math.random() * 81)
+           let risultato = bombe.includes(numeri)
+           if (risultato != true) {
+               bombe.push(numeri);
+           }
+         } 
+    } else if (livello == 3) {
+       while (bombe.length <= 16) {
+           let numeri =  Math.floor(Math.random() * 49)
+           let risultato = bombe.includes(numeri)
+           if (risultato != true) {
+               bombe.push(numeri);
+               
+           }
+         } 
+       
+       
+       
+    } 
+    
+    console.log(bombe)
     
     // ciclo con numero di giri da fare in base all'if
     for (let e = 1; e <= giri; e++) {
-
     //   if per assegnare la classe in base al livello 
 
         let classeLivello;
@@ -62,65 +101,32 @@ document.getElementById('bottone').addEventListener('click',function() {
             classeLivello = "item_3"; 
         }
 
-    // genero un arrey con 16 numeri random che saranno poi le bombe
-
-        let bombe = [];
-        console.log(bombe)
-    
-        document.getElementById('livello').value;
-        console.log(livello)
-    
-    if ( livello == 1) {
-        while (bombe.length <= 16) {
-            let numeri =  Math.floor(Math.random() * 100)
-            let risultato = bombe.includes(numeri)
-            if (risultato != true) {
-                bombe.push(numeri);
-            }
-          }
-     } else if (livello == 2) {
-        while (bombe.length <= 16) {
-            let numeri =  Math.floor(Math.random() * 81)
-            let risultato = bombe.includes(numeri)
-            if (risultato != true) {
-                bombe.push(numeri);
-            }
-          } 
-     } else if (livello == 3) {
-        while (bombe.length <= 16) {
-            let numeri =  Math.floor(Math.random() * 81)
-            let risultato = bombe.includes(numeri)
-            if (risultato != true) {
-                bombe.push(numeri);
-            }
-          } 
-        
-        
-        
-     }
+ 
 
 
-  //    creo variabile da associare a fuzione castom
-          let divbox = creazioneElemento("div", "item", classeLivello);
-    //   aggiungo evento al click
-           divbox.addEventListener("click", function() {
 
-            if (!bombe.includes ('numeri')) {      
-               this.classList.add('active');
-               this.innerHTML = `<i class="fa-solid fa-check fa-beat"></i>`
-               score++
-               console.log('numeri')
-            } else {
-                this.classList.add('red');
-                this.innerHTML = `<i class="fa-solid fa-bomb fa-beat-fade";"></i>`
-                griglia.innerHTML += `<h1>hai perso con un punteggio di ${score} </h1>`;
-            }
-            console.log(divbox)
-           })
-      //  assemblo elementi creati
-           divbox.append(e);
-           griglia.append(divbox);
+        //  creo variabile da associare a fuzione castom
+        let divbox = creazioneElemento("div", "item", classeLivello);
+        //   aggiungo evento al click
+        divbox.addEventListener("click", function() {
+        console.log(e)
+        if (!bombe.includes(e)) {    
+            // console.log(!bombe.includes(numeri))  
+            this.classList.add('active');
+            this.innerHTML = `<i class="fa-solid fa-check fa-beat"></i>`
+            score++
+        } else {
+            this.classList.add('red');
+            this.innerHTML = `<i class="fa-solid fa-bomb fa-beat-fade";"></i>`
+            griglia.innerHTML += `<h1>hai perso con un punteggio di ${score} </h1>`;
+        }
+        console.log(divbox)
+        })
+        //  assemblo elementi creati
+        divbox.append(e);
+        griglia.append(divbox);
 
     }
 })
+
 
